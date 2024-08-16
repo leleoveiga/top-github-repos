@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		28FF519F2C6EDE47004CD81D /* app-coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 28FF519E2C6EDE47004CD81D /* app-coordinator */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		28024E402C6DA6F4009CC800 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,36 +33,9 @@
 		28024E492C6DA6F4009CC800 /* TopGithubReposUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopGithubReposUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		28024E512C6DA6F4009CC800 /* Exceptions for "TopGithubRepos" folder in "TopGithubRepos" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"/Localized: LaunchScreen.storyboard",
-				"/Localized: Main.storyboard",
-				Info.plist,
-			);
-			target = 28024E282C6DA6F3009CC800 /* TopGithubRepos */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		28024E552C6DA6F4009CC800 /* Exceptions for "TopGithubRepos" folder in "Copy Bundle Resources" phase from "TopGithubRepos" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 28024E272C6DA6F3009CC800 /* Resources */;
-			membershipExceptions = (
-				Base.lproj/LaunchScreen.storyboard,
-				Base.lproj/Main.storyboard,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		28024E2B2C6DA6F3009CC800 /* TopGithubRepos */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				28024E512C6DA6F4009CC800 /* Exceptions for "TopGithubRepos" folder in "TopGithubRepos" target */,
-				28024E552C6DA6F4009CC800 /* Exceptions for "TopGithubRepos" folder in "Copy Bundle Resources" phase from "TopGithubRepos" target */,
-			);
 			path = TopGithubRepos;
 			sourceTree = "<group>";
 		};
@@ -79,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FF519F2C6EDE47004CD81D /* app-coordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +83,7 @@
 				28024E2B2C6DA6F3009CC800 /* TopGithubRepos */,
 				28024E422C6DA6F4009CC800 /* TopGithubReposTests */,
 				28024E4C2C6DA6F4009CC800 /* TopGithubReposUITests */,
+				28FF519D2C6EDE47004CD81D /* Frameworks */,
 				28024E2A2C6DA6F3009CC800 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,6 +96,13 @@
 				28024E492C6DA6F4009CC800 /* TopGithubReposUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		28FF519D2C6EDE47004CD81D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +125,7 @@
 			);
 			name = TopGithubRepos;
 			packageProductDependencies = (
+				28FF519E2C6EDE47004CD81D /* app-coordinator */,
 			);
 			productName = TopGithubRepos;
 			productReference = 28024E292C6DA6F3009CC800 /* TopGithubRepos.app */;
@@ -202,6 +189,7 @@
 				TargetAttributes = {
 					28024E282C6DA6F3009CC800 = {
 						CreatedOnToolsVersion = 16.0;
+						LastSwiftMigration = 1600;
 					};
 					28024E3E2C6DA6F4009CC800 = {
 						CreatedOnToolsVersion = 16.0;
@@ -301,16 +289,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MTKKYGCKK;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TopGithubRepos/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TopGithubRepos/TopInfo.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,6 +308,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leonardoveiga.TopGithubRepos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -329,16 +319,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MTKKYGCKK;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TopGithubRepos/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TopGithubRepos/TopInfo.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,7 +380,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -412,6 +403,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -452,7 +444,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -467,6 +459,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -583,6 +576,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28FF519E2C6EDE47004CD81D /* app-coordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "app-coordinator";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28024E212C6DA6F3009CC800 /* Project object */;
 }
