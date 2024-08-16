@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  MainCoordinator.swift
 //  app-coordinator
 //
 //  Created by Leonardo Veiga on 15/08/24.
