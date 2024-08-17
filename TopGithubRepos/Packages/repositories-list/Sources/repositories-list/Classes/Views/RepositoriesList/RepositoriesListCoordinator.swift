@@ -9,6 +9,10 @@ import Foundation
 import core_utility
 import UIKit
 
+protocol RepositoriesListCoordinatorDelegate: AnyObject {
+    func goToRepositotyList()
+}
+
 public class RepositoriesListCoordinator: Coordinator {
     public var presenter: UINavigationController
 
@@ -19,7 +23,17 @@ public class RepositoriesListCoordinator: Coordinator {
     }
     
     public func start() {
-        let viewController = RepositoriesListViewController()
+        goToRepositotyList()
+    }
+}
+
+extension RepositoriesListCoordinator: RepositoriesListCoordinatorDelegate {
+    func goToRepositotyList() {
+        let viewModel = RepositoriesListViewModel(repository: RepositoriesListRepository())
+        let viewController = RepositoriesListViewController(
+            delegate: self,
+            viewModel: viewModel
+        )
         presenter.pushViewController(viewController, animated: true)
         self.repositoryListViewController = viewController
     }

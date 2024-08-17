@@ -46,9 +46,6 @@ public class NetworkManager {
     }
 }
 
-//Nome do repositório, Descrição do Repositório,
-//Nome/Foto do autor , Número de Stars, Número de Forks
-
 extension HTTPHeaders? {
     func addAuthorizationHeader() -> HTTPHeaders {
         var updatedHeaders = self ?? HTTPHeaders()
