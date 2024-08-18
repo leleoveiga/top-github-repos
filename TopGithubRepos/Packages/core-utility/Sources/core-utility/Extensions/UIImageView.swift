@@ -7,23 +7,14 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 public extension UIImageView {
     func setImage(imageUrl: String?) {
         guard let imageUrl, let url = URL(string: imageUrl) else {
-            self.image = UIImage(resource: .placeholderNoPhoto)
+            image = UIImage(resource: .placeholderNoPhoto)
             return
         }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil, let imageData = data, let image = UIImage(data: imageData) else {
-                self.image = UIImage(resource: .placeholderNoPhoto)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.image = image
-            }
-            
-        }.resume()
+        self.sd_setImage(with: url)
     }
 }
