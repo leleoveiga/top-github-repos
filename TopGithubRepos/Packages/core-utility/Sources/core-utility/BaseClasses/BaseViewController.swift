@@ -37,4 +37,22 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     
     //MARK: - Setups
     open func setupObservables() {}
+    
+    open func showAlert(
+        title: String = "Ops!",
+        message: String,
+        okButtonText: String = "Ok",
+        completion: (() -> Void)? = nil
+    ) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: okButtonText,
+                                     style: .default) { _ in
+            completion?()
+        }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }

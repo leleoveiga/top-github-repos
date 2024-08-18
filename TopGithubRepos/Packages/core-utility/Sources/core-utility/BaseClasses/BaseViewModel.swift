@@ -19,7 +19,7 @@ open class BaseViewModel {
     
     // MARK: - Variables
     public let error = PublishSubject<String>()
-    public let loading = PublishSubject<Bool>()
+    public let loading = BehaviorRelay<Bool>(value: false)
     public let disposeBag = DisposeBag()
     
     // MARK: - Init
@@ -31,14 +31,14 @@ open class BaseViewModel {
         onSuccess: @escaping (T) -> () = { _ in },
         onError: ((Error) -> ())? = nil
     ) {
-        self.loading.onNext(true)
+        self.loading.accept(true)
         request.subscribe(onSuccess: { [weak self] response in
             guard let self = self else { return }
-            self.loading.onNext(false)
+            self.loading.accept(false)
             onSuccess(response)
         }, onFailure: { [weak self] error in
             guard let self = self else { return }
-            self.loading.onNext(false)
+            self.loading.accept(false)
             if let errorAction = onError {
                 errorAction(error)
             } else {

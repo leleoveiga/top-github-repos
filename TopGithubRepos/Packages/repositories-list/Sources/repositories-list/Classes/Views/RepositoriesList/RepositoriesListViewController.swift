@@ -59,6 +59,23 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
                 screenView.setLanguage(lang)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.loading
+            .subscribe(onNext: { [weak self] loading in
+                guard let self = self else { return }
+                screenView.setLoading(loading)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.error
+            .subscribe(
+                onNext: { [weak self] error in
+                    guard let self = self else { return }
+                    showAlert(
+                        message: "Houve um erro ao carregar os repositórios.\nTentar novamente?",
+                        completion: { self.viewModel.getRepositories() })
+                })
+            .disposed(by: disposeBag)
     }
 }
 

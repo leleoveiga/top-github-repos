@@ -144,6 +144,8 @@ protocol LLViewProtocol {
 }
 
 open class LLView: UIView, LLViewProtocol {
+    private lazy var loadingView: LoadingView? = nil
+    
     open func addViews() {}
     open func addConstraints() {}
     open func setup() {}
