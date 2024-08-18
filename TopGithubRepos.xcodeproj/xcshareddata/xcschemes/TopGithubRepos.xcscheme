@@ -50,6 +50,13 @@
             ReferencedContainer = "container:TopGithubRepos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "API_KEY"
+            value = "APAGUE_ESSE_TEXTO_E_INSIRA_SUA_CHAVE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
