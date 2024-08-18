@@ -7,10 +7,18 @@
 
 import UIKit
 import core_utility
+import core_design_system
 
 class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
     private weak var delegate: RepositoriesListCoordinatorDelegate?
     let viewModel: RepositoriesListViewModel!
+    let searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Digite o nome do repositório"
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.tintColor = MainTheme.text
+        return searchController
+    }()
     
     init(delegate: RepositoriesListCoordinatorDelegate, viewModel: RepositoriesListViewModel) {
         self.delegate = delegate
@@ -25,6 +33,10 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         title = "Top repositórios"
+        setLLabsBarStyle(.mainTheme)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewDidLoad() {

@@ -10,9 +10,9 @@ import UIKit
 
 public struct MainTheme {
     // Texto
-    public static var text: UIColor = .appGray
+    public static var text: UIColor = .appLightGray
     // Background
-    public static var background: UIColor = .appWhite
+    public static var background: UIColor = .black
     
     // Card Design
     public struct CardDesign {
@@ -53,7 +53,7 @@ public struct MainTheme {
     // Navigation
     public struct Navigation {
         // Texto
-        public static var text: UIColor = .appGray
+        public static var text: UIColor = .appLightGray
         // Ícone
         public static var icon: UIColor = .secondary
     }

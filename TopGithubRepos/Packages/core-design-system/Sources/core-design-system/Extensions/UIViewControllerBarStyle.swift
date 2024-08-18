@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public extension UIViewController {
-    func setM2YBarStyle(_ style: M2YUINavigationBarStyle) {
+    func setLLabsBarStyle(_ style: LLabsUINavigationBarStyle) {
         guard let navigationBar = navigationController?.navigationBar else { return }
         navigationItem.largeTitleDisplayMode = style.largeTitleDisplayMode
         navigationBar.barStyle = style.barStyle

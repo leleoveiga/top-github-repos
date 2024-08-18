@@ -18,7 +18,7 @@ class RepositoriesListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .appGreen
+        backgroundColor = MainTheme.background
         addViews()
         addConstraints()
     }
@@ -38,7 +38,7 @@ class RepositoriesListView: UIView {
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = MainTheme.text
         label.font = .largeTitleBold
         label.text = "Hello World"
         return label

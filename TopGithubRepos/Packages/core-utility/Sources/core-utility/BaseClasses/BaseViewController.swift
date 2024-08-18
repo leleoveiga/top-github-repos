@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import core_design_system
 
 open class BaseViewController<ViewType: UIView>: UIViewController {
     
@@ -26,7 +25,7 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     /// Sets up navigation style and BaseViewModel error and loading observables.
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigation()
+        setupBack()
         setupObservables()
     }
     
@@ -37,11 +36,5 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     }
     
     //MARK: - Setups
-    open func setupNavigation(style: M2YUINavigationBarStyle = .defaultStyle) {
-        setupBack()
-        setM2YBarStyle(style)
-    }
-    
     open func setupObservables() {}
-    
 }

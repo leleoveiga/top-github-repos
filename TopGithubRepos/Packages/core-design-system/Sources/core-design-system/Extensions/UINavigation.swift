@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-public struct M2YUINavigationBarStyle {
+public struct LLabsUINavigationBarStyle {
     
-    public static var defaultStyle = M2YUINavigationBarStyle(largeTitleDisplayMode: .always,
+    public static var defaultStyle = LLabsUINavigationBarStyle(largeTitleDisplayMode: .always,
                                                              barStyle: .default,
                                                              tintColor: .black)
     
@@ -39,14 +39,14 @@ public struct M2YUINavigationBarStyle {
     }
 }
 
-public extension M2YUINavigationBarStyle {
-    static let mainTheme = M2YUINavigationBarStyle(
+public extension LLabsUINavigationBarStyle {
+    static let mainTheme = LLabsUINavigationBarStyle(
         largeTitleDisplayMode: .always,
         barStyle: StatusBar.black,
         tintColor: MainTheme.Navigation.icon,
         largeTitleTextAttributes: TextAttributes(
             foregroundColor: MainTheme.Navigation.text,
-            font: .title2Bold
+            font: .title1Bold
         ),
         titleTextAttributes: TextAttributes(
             foregroundColor: MainTheme.Navigation.text,
@@ -54,7 +54,7 @@ public extension M2YUINavigationBarStyle {
         )
     )
     
-    static let mainThemeSmall = M2YUINavigationBarStyle(
+    static let mainThemeSmall = LLabsUINavigationBarStyle(
         largeTitleDisplayMode: .never,
         barStyle: StatusBar.black,
         tintColor: MainTheme.Navigation.icon,
