@@ -14,25 +14,29 @@ class RepositoriesListViewModel: BaseViewModel {
     private let repository: RepositoriesListRepositoryProtocol
     
     let repositories: BehaviorRelay<[Repository]> = .init(value: [])
+    var page = 1
     
     init(repository: RepositoriesListRepositoryProtocol) {
         self.repository = repository
     }
     
-    func getRepositories(page: Int = 1) {
+    func getRepositories() {
+        guard hasNextPage() else { return }
         let params = RepositoryListRequest(
-            page: 1,
+            page: page,
             q: LanguageType.swift.asRequestParam(),
             sort: .stars
         )
         observeAPIRequest(
             from: repository.getRepositories(params: params),
             onSuccess: { [weak self] response in
+                self?.page += 1
                 self?.repositories.accept(response.items)
             }
         )
     }
                        
+    //TODO: Pegar do header se existe o link next
     func hasNextPage() -> Bool {
         return true
     }

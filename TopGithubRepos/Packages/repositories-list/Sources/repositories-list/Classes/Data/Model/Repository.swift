@@ -65,12 +65,11 @@ enum LanguageType: String, Codable {
     case swift
     case kotlin
     
+    var languageFilterPrefix: String {
+        return "language:"
+    }
+    
     func asRequestParam() -> String {
-        switch self {
-        case .swift:
-            "language:Swift"
-        case .kotlin:
-            "language:Kotlin"
-        }
+        return languageFilterPrefix + rawValue
     }
 }
