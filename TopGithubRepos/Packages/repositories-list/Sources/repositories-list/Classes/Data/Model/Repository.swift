@@ -31,7 +31,7 @@ struct RepositoryListResponse: Codable {
 // MARK: - Item
 struct Repository: Codable {
     let name: String
-    let description: String
+    let description: String?
     let owner: Owner
     let stargazersCount: Int
     let forks: Int
@@ -48,7 +48,7 @@ struct Repository: Codable {
 // MARK: - Owner
 struct Owner: Codable {
     let login: String
-    let avatarUrl: String
+    let avatarUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case login = "login"

@@ -82,7 +82,7 @@ class RepositoriesListViewCell: UITableViewCell {
         }
         
         iconImageView.snp.makeConstraints { make in
-            make.size.equalTo(CGFloat.height(.smallProfile))
+            make.size.equalTo(CGFloat.height(.profilePicture))
         }
         
         starIconImageView.snp.makeConstraints { make in

@@ -13,7 +13,8 @@ let package = Package(
             targets: ["core-network"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1"))
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1")),
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.1.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -23,7 +24,10 @@ let package = Package(
             dependencies: [
                 .product(
                     name: "Alamofire",
-                    package: "Alamofire")
+                    package: "Alamofire"),
+                .product(
+                    name: "RxSwift",
+                    package: "RxSwift"),
             ]),
         .testTarget(
             name: "core-networkTests",

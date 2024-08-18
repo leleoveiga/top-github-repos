@@ -45,7 +45,8 @@ public class Layout {
     //MARK: - Height
     public enum Height: CGFloat {
         case smallIcon = 20
-        case smallProfile = 40
+        case mediumIcon = 24
+        case profilePicture = 40
     }
     
     // MARK: - Opacity

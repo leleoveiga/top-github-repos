@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 public extension UIImageView {
-    func setImage(imageUrl: String) {
-        guard let url = URL(string: imageUrl) else {
+    func setImage(imageUrl: String?) {
+        guard let imageUrl, let url = URL(string: imageUrl) else {
             self.image = UIImage(resource: .placeholderNoPhoto)
             return
         }

@@ -31,6 +31,8 @@ public protocol ViewControllerRxSwiftTableView {
     
     func setupTableView()
     func selected(item: Cell.CellItem)
+    func additionalSetup(cell: Cell, indexPath: IndexPath)
+    func lastIndexPath(indexPath: Int)
 }
 
 // MARK: - Default Implementations
@@ -44,15 +46,16 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
                                          cellType: Cell.self))
         { [weak self] indexPath, item, cell in
             guard let self = self else { return }
+
             cell.setupCell(with: item)
+            self.lastIndexPath(indexPath: indexPath)
         }
         .disposed(by: disposeBag)
         
-        tableViewItems
-            .skip(1)
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.tableView.animateTableView()
+        tableView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] cell, indexPath in
+                guard let self = self, let cell = cell as? Self.Cell else { return }
+                self.additionalSetup(cell: cell, indexPath: indexPath)
             })
             .disposed(by: disposeBag)
         
@@ -68,6 +71,8 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
 
 public extension ViewControllerRxSwiftTableView where Self: UIViewController {
     func selected(item: Cell.CellItem) {}
+    func lastIndexPath(indexPath: Int) {}
+    func additionalSetup(cell: Cell, indexPath: IndexPath) {}
 }
 
 public extension ViewControllerRxSwiftTableView where Self: UITableViewDelegate {

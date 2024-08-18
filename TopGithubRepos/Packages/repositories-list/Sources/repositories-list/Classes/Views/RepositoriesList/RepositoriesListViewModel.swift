@@ -33,8 +33,8 @@ class RepositoriesListViewModel: BaseViewModel {
             from: repository.getRepositories(params: params),
             onSuccess: { [weak self] response in
                 self?.page += 1
-                self?.repositories.accept(response.items)
-                self?.repositoriesFiltered.accept(response.items)
+                self?.repositories.append(contentsOf: (response.items))
+                self?.resetSearch()
             }
         )
     }
