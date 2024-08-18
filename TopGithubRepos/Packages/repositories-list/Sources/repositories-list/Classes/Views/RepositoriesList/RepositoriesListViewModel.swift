@@ -13,7 +13,9 @@ import RxCocoa
 class RepositoriesListViewModel: BaseViewModel {
     private let repository: RepositoriesListRepositoryProtocol
     
+    var selectedLanguage: BehaviorRelay<LanguageType> = .init(value: .swift)
     let repositories: BehaviorRelay<[Repository]> = .init(value: [])
+    let repositoriesFiltered: BehaviorRelay<[Repository]> = .init(value: [])
     var page = 1
     
     init(repository: RepositoriesListRepositoryProtocol) {
@@ -24,7 +26,7 @@ class RepositoriesListViewModel: BaseViewModel {
         guard hasNextPage() else { return }
         let params = RepositoryListRequest(
             page: page,
-            q: LanguageType.swift.asRequestParam(),
+            q: selectedLanguage.value.asRequestParam(),
             sort: .stars
         )
         observeAPIRequest(
@@ -32,8 +34,21 @@ class RepositoriesListViewModel: BaseViewModel {
             onSuccess: { [weak self] response in
                 self?.page += 1
                 self?.repositories.accept(response.items)
+                self?.repositoriesFiltered.accept(response.items)
             }
         )
+    }
+    
+    func filterRepositories(substring: String) {
+        let filteredRepositories = repositories.value.filter { repo in
+            let name = repo.name.lowercased()
+            return name.contains(substring.lowercased())
+        }
+        repositoriesFiltered.accept(filteredRepositories)
+    }
+    
+    func resetSearch() {
+        repositoriesFiltered.accept(repositories.value.map { $0 })
     }
                        
     //TODO: Pegar do header se existe o link next

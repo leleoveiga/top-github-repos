@@ -12,17 +12,34 @@ import SnapKit
 import core_design_system
 
 class RepositoriesListView: LLView {
-    lazy var stackView: UIStackView = .stackView(alignment: .center)
-    lazy var label: UILabel = .label(text: "Hello World", font: .largeTitleBold)
+    lazy var wrapper: UIView = .simpleView()
+    lazy var subtitle: UILabel = .label(font: .subtitleBold, numberOfLines: 0)
+    lazy var tableView: UITableView = .tableView()
     
     override func addViews() {
-        addSubview(stackView)
-        stackView.addArrangedSubview(label)
+        addSubview(wrapper)
+        wrapper.addSubview(subtitle)
+        wrapper.addSubview(tableView)
     }
     
     override func addConstraints() {
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        wrapper.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(.margin(.large))
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(.margin(.medium))
         }
+        
+        subtitle.snp.makeConstraints { make in
+            make.leading.top.trailing.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(subtitle.snp.bottom).inset(-.margin(.medium))
+            make.leading.bottom.trailing.equalToSuperview()
+        }
+    }
+    
+    func setLanguage(_ language: LanguageType) {
+        self.subtitle.text = "Repositórios mais populares usando a linguagem de programaçao \(language.rawValue.capitalized) no Github:"
     }
 }

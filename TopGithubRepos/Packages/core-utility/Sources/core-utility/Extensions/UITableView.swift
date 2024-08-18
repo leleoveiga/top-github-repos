@@ -29,7 +29,7 @@ public extension UITableView {
     
     func animateTableView() {
         alpha = 0.0
-        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: {
             self.alpha = 1.0
         }, completion: nil)
     }

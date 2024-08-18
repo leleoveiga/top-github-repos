@@ -14,40 +14,14 @@ public struct MainTheme {
     // Background
     public static var background: UIColor = .black
     
-    // Card Design
-    public struct CardDesign {
-        // Background
-        public static var background: UIColor = .appWhite
-        // Conteúdo
-        public static var content: UIColor = .primary
-    }
-    
-    // Comunicação
-    public struct Communication {
-        // Informativo
-        public static var info: UIColor = .primary
-        // Negativo
-        public static var negative: UIColor = .appRed
-        // Positivo
-        public static var positive: UIColor = .appGreen
-        // Alerta
-        public static var alert: UIColor = .appOrange
-    }
-    
     // Elementos Gráficos
     public struct GraphicElements {
-        // Conteúdo
-        public static var content: UIColor = .appWhite
         // Linha
-        public static var line: UIColor = .appLightGray
-        // Texto
-        public static var text: UIColor = .appGray
-        // Inativo
-        public static var inactive: UIColor = .appMediumGray
+        public static var line: UIColor = .appGray
         // Ícone
-        public static var icons: UIColor = .secondary
+        public static var icons: UIColor = .appMediumGray
         // Background
-        public static var background: UIColor = .appWhite
+        public static var background: UIColor = .appGray
     }
     
     // Navigation
@@ -57,28 +31,6 @@ public struct MainTheme {
         // Ícone
         public static var icon: UIColor = .secondary
     }
-    
-    // Textfield
-    public struct TextField {
-        // Texto
-        public static var text: UIColor = .appGray
-        // Linha
-        public static var line: UIColor = .appLightGray
-        // Negativo
-        public static var negative: UIColor = .appRed
-        // Ícone
-        public static var icon: UIColor = .secondary
-        // Inativo
-        public static var inactive: UIColor = .appMediumGray
-    }
-}
-
-// Home Indicador
-public struct HomeIndicator {
-    // Branco
-    public static var white: UIColor = .appWhite
-    // Preto
-    public static var black: UIColor = .black
 }
 
 // Status Bar

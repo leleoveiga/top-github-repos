@@ -31,8 +31,6 @@ public protocol ViewControllerRxSwiftTableView {
     
     func setupTableView()
     func selected(item: Cell.CellItem)
-    func selectedItemIndex(index: Int)
-    func additionalCellSetup(indexPath: Int, item: Cell.CellItem, cell: Cell)
 }
 
 // MARK: - Default Implementations

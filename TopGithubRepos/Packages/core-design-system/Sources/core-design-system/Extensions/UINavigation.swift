@@ -50,7 +50,7 @@ public extension LLabsUINavigationBarStyle {
         ),
         titleTextAttributes: TextAttributes(
             foregroundColor: MainTheme.Navigation.text,
-            font: .subheadBold
+            font: .body1Bold
         )
     )
     
@@ -60,7 +60,7 @@ public extension LLabsUINavigationBarStyle {
         tintColor: MainTheme.Navigation.icon,
         titleTextAttributes: TextAttributes(
             foregroundColor: MainTheme.Navigation.text,
-            font: .calloutBold
+            font: .body1Bold
         )
     )
 }

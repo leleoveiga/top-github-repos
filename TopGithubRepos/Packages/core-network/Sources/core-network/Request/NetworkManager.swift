@@ -30,14 +30,19 @@ public class NetworkManager {
                                                parameters: parameters,
                                                headers: updatedHeaders)
                 .validate()
-                .responseDecodable(of: T.self) { response in
+                .responseDecodable(
+                    of: T.self,
+                    queue: .global(qos: .userInitiated)
+                ) { response in
                     print("response: \(response)")
                     print("url request: \(response.request!.url!)")
-                    switch response.result {
-                    case .success(let value):
-                        single(.success(value))
-                    case .failure(let error):
-                        single(.failure(error))
+                    DispatchQueue.main.async {
+                        switch response.result {
+                        case .success(let value):
+                            single(.success(value))
+                        case .failure(let error):
+                            single(.failure(error))
+                        }                        
                     }
                 }
             

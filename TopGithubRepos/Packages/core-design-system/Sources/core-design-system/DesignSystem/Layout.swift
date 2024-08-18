@@ -44,12 +44,8 @@ public class Layout {
     
     //MARK: - Height
     public enum Height: CGFloat {
-        case filterButton = 35
-        case logo = 40
-        case defaultButtonHeight = 50
-        case largeLogo = 60
-        case avatar = 80
-        case iTokenLoader = 240
+        case smallIcon = 20
+        case smallProfile = 40
     }
     
     // MARK: - Opacity

@@ -32,7 +32,7 @@ public extension UITableView {
 // MARK: - UIView
 public extension UIView {
     
-    static func simpleView(color: UIColor = .secondary,
+    static func simpleView(color: UIColor = .clear,
                            cornerRadius: CGFloat = 0,
                            borderWidth: CGFloat = 1,
                            borderColor: UIColor = .clear) -> UIView {
@@ -50,7 +50,8 @@ public extension UILabel {
     
     static func label(
         text: String? = nil,
-        font: UIFont = .callout,
+        font: UIFont = .body1,
+        numberOfLines: Int = 1,
         textColor: UIColor = MainTheme.text,
         textAlignment: NSTextAlignment = .natural
     ) -> UILabel {
@@ -60,6 +61,7 @@ public extension UILabel {
             label.text = text
         }
         
+        label.numberOfLines = numberOfLines
         label.font = font
         label.textAlignment = textAlignment
         label.textColor = textColor
@@ -113,6 +115,20 @@ public extension UIImageView {
                                     in: bundle,
                                     renderingMode: tintColor == nil ? .alwaysOriginal : .alwaysTemplate)
         imageView.image = image
+        if let tintColor = tintColor {
+            imageView.tintColor = tintColor
+        }
+        imageView.contentMode = contentMode
+        return imageView
+    }
+    
+    static func imageView(
+        with image: UIImage?,
+        tintColor: UIColor? = nil,
+        contentMode: ContentMode = .scaleToFill
+    ) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.image = image?.withRenderingMode(tintColor == nil ? .alwaysOriginal : .alwaysTemplate) ?? UIImage()
         if let tintColor = tintColor {
             imageView.tintColor = tintColor
         }

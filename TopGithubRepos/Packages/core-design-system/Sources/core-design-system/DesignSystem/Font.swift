@@ -49,20 +49,16 @@ private func getFont(fontWeight: FontWeight, size: CGFloat) -> UIFont {
 }
 
 public extension UIFont {
-    static let largeTitle: UIFont = getFont(fontWeight: .regular, size: 34.0)
-    static let largeTitleBold: UIFont = getFont(fontWeight: .bold, size: 34.0)
     static let title1: UIFont = getFont(fontWeight: .regular, size: 28.0)
     static let title1Bold: UIFont = getFont(fontWeight: .bold, size: 28.0)
     static let title2: UIFont = getFont(fontWeight: .regular, size: 20.0)
     static let title2Bold: UIFont = getFont(fontWeight: .bold, size: 20.0)
-    static let body: UIFont = getFont(fontWeight: .regular, size: 17.0)
-    static let bodyBold: UIFont = getFont(fontWeight: .bold, size: 17.0)
-    static let callout: UIFont = getFont(fontWeight: .regular, size: 16.0)
-    static let calloutBold: UIFont = getFont(fontWeight: .bold, size: 16.0)
-    static let subhead: UIFont = getFont(fontWeight: .regular, size: 15.0)
-    static let subheadBold: UIFont = getFont(fontWeight: .bold, size: 15.0)
-    static let footnote: UIFont = getFont(fontWeight: .regular, size: 13.0)
-    static let footnoteBold: UIFont = getFont(fontWeight: .bold, size: 13.0)
+    static let subtitle: UIFont = getFont(fontWeight: .regular, size: 16.0)
+    static let subtitleBold: UIFont = getFont(fontWeight: .bold, size: 16.0)
+    static let body1: UIFont = getFont(fontWeight: .regular, size: 15.0)
+    static let body1Bold: UIFont = getFont(fontWeight: .bold, size: 15.0)
+    static let body2: UIFont = getFont(fontWeight: .regular, size: 13.0)
+    static let body2Bold: UIFont = getFont(fontWeight: .bold, size: 13.0)
     static let caption: UIFont = getFont(fontWeight: .regular, size: 11.0)
     static let captionBold: UIFont = getFont(fontWeight: .bold, size: 11.0)
     
