@@ -31,14 +31,16 @@ public protocol ViewControllerRxSwiftTableView {
     
     func setupTableView()
     func selected(item: Cell.CellItem)
-    func additionalSetup(cell: Cell, indexPath: IndexPath)
-    func lastIndexPath(indexPath: Int)
+    func additionalSetup(cell: Cell, indexPath: Int)
 }
 
 // MARK: - Default Implementations
 public extension ViewControllerRxSwiftTableView where Self: UIViewController {
     
     func setupTableView() {
+        if let self = self as? UIScrollViewDelegate {
+            tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        }
         tableView.register(Cell.self, forCellReuseIdentifier: Cell.identifier)
         
         tableViewItems
@@ -48,16 +50,9 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
             guard let self = self else { return }
 
             cell.setupCell(with: item)
-            self.lastIndexPath(indexPath: indexPath)
+            self.additionalSetup(cell: cell, indexPath: indexPath)
         }
         .disposed(by: disposeBag)
-        
-        tableView.rx.willDisplayCell
-            .subscribe(onNext: { [weak self] cell, indexPath in
-                guard let self = self, let cell = cell as? Self.Cell else { return }
-                self.additionalSetup(cell: cell, indexPath: indexPath)
-            })
-            .disposed(by: disposeBag)
         
         tableView.rx
             .modelSelected(Cell.CellItem.self)
@@ -71,13 +66,12 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
 
 public extension ViewControllerRxSwiftTableView where Self: UIViewController {
     func selected(item: Cell.CellItem) {}
-    func lastIndexPath(indexPath: Int) {}
-    func additionalSetup(cell: Cell, indexPath: IndexPath) {}
+    func additionalSetup(cell: Cell, indexPath: Int) {}
 }
-
-public extension ViewControllerRxSwiftTableView where Self: UITableViewDelegate {
-    func setupTableViewDelegate() {
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-    }
-}
+//
+//public extension ViewControllerRxSwiftTableView where Self: UITableViewDelegate {
+//    func setupTableViewDelegate() {
+//        
+//    }
+//}
 

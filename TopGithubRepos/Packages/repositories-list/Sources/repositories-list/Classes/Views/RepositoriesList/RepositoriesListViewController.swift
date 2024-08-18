@@ -39,8 +39,10 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
         title = "Populares"
         setLLabsBarStyle(.mainTheme)
         setupTableView()
-        
-        setupTableViewDelegate()
+        setupSearchBar()
+    }
+    
+    private func setupSearchBar() {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
@@ -118,26 +120,29 @@ extension RepositoriesListViewController: ViewControllerRxSwiftTableView {
         print("selecionou: \(item.name)")
     }
     
-    func lastIndexPath(indexPath: Int) {
-        print("lastIndexPath: \(indexPath)")
-        print("items count \(viewModel.repositories.value.count)")
-        let requestOffset = 10
-        if viewModel.repositories.value.count - (indexPath + requestOffset) <= 0 && !viewModel.loading.value{
-            print("making request")
-            viewModel.getRepositories()
-        }
+    func additionalSetup(cell: Cell, indexPath: Int) {
+        animateCell(indexPath, cell)
+        
+        requestIfNeeded(indexPath)
     }
     
-    func additionalSetup(cell: Cell, indexPath: IndexPath) {
-        if indexPath.row > biggestIndexPath {
-            biggestIndexPath = indexPath.row
-            cell.alpha = 0
+    private func animateCell(_ indexPath: Int, _ cell: RepositoriesListViewController.Cell) {
+        if indexPath > biggestIndexPath {
+            biggestIndexPath = indexPath
+            cell.alpha = 0.15
             
             UIView.animate(
                 withDuration: 0.35,
                 animations: {
                     cell.alpha = 1
                 })
+        }
+    }
+    
+    private func requestIfNeeded(_ indexPath: Int) {
+        let requestOffset = 10
+        if viewModel.repositories.value.count - (indexPath + requestOffset) <= 0 && !viewModel.loading.value{
+            viewModel.getRepositories()
         }
     }
 }
@@ -168,12 +173,6 @@ extension RepositoriesListViewController: UITableViewDelegate {
         }
 
     }
-    
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = UIActivityIndicatorView(style: .medium)
-//        footerView.startAnimating()
-//        return footerView
-//    }
 }
 
 extension RepositoriesListViewController: UISearchResultsUpdating, UISearchBarDelegate {
