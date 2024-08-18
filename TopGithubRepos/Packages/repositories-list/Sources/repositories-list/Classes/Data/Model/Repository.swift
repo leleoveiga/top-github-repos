@@ -37,7 +37,7 @@ struct Repository: Codable {
     let forks: Int
     
     enum CodingKeys: String, CodingKey {
-        case name = "name"
+        case name = "full_name"
         case description = "description"
         case forks = "forks"
         case owner = "owner"

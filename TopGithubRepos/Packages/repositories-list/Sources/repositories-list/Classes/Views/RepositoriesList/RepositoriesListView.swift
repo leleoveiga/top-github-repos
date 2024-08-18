@@ -11,45 +11,16 @@ import UIKit
 import SnapKit
 import core_design_system
 
-class RepositoriesListView: UIView {
-    private enum Layout {
-        
-    }
+class RepositoriesListView: LLView {
+    lazy var stackView: UIStackView = .stackView(alignment: .center)
+    lazy var label: UILabel = .label(text: "Hello World", font: .largeTitleBold)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = MainTheme.background
-        addViews()
-        addConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    lazy var stackView: UIStackView = {
-        let label = UIStackView()
-        label.axis = .vertical
-        label.spacing = 16
-        label.alignment = .center
-        label.distribution = .fill
-        return label
-    }()
-    
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.textColor = MainTheme.text
-        label.font = .largeTitleBold
-        label.text = "Hello World"
-        return label
-    }()
-    
-    private func addViews() {
+    override func addViews() {
         addSubview(stackView)
         stackView.addArrangedSubview(label)
     }
     
-    private func addConstraints() {
+    override func addConstraints() {
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

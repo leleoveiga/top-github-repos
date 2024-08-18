@@ -47,7 +47,6 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
         { [weak self] indexPath, item, cell in
             guard let self = self else { return }
             cell.setupCell(with: item)
-            self.additionalCellSetup(indexPath: indexPath, item: item, cell: cell)
         }
         .disposed(by: disposeBag)
         
@@ -66,21 +65,11 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
                 self.selected(item: item)
             })
             .disposed(by: disposeBag)
-        
-        tableView.rx
-            .itemSelected
-            .subscribe(onNext: { [weak self] item in
-                guard let self = self else { return }
-                self.selectedItemIndex(index: item.row)
-            })
-            .disposed(by: disposeBag)
     }
 }
 
 public extension ViewControllerRxSwiftTableView where Self: UIViewController {
     func selected(item: Cell.CellItem) {}
-    func selectedItemIndex(index: Int) {}
-    func additionalCellSetup(indexPath: Int, item: Cell.CellItem, cell: Cell) {}
 }
 
 public extension ViewControllerRxSwiftTableView where Self: UITableViewDelegate {
