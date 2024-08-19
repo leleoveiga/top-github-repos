@@ -16,12 +16,27 @@ public class NetworkManager {
     
     private init() {}
     
+    fileprivate func log<T: Decodable>(_ response: DataResponse<T, AFError>) {
+        if let requestUrl = response.request?.url {
+            print("============== RESPONSE ==============\n - url request: \(requestUrl) ")
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text.prettyPrintJSON())")
+            }
+        }
+        if let detailedError = response.error?.underlyingError.debugDescription {
+            print("============== ERROR ==============\n  \(detailedError)")
+        }
+        
+        print("==============================")
+    }
+    
     public func request<T: Decodable>(_ endpoint: String,
                                method: HTTPMethod = .get,
                                parameters: Parameters? = nil,
                                headers: HTTPHeaders? = nil) -> Single<T> {
         return Single.create { single in
             let url = "\(NetworkConfig.apiUrl)\(endpoint)"
+            print("==============================")
             print("url: \(url)")
             let updatedHeaders = headers.addAuthorizationHeader()
             
@@ -34,8 +49,7 @@ public class NetworkManager {
                     of: T.self,
                     queue: .global(qos: .userInitiated)
                 ) { response in
-                    print("response: \(response)")
-                    print("url request: \(response.request!.url!)")
+                    self.log(response)
                     DispatchQueue.main.async {
                         switch response.result {
                         case .success(let value):
