@@ -1,31 +1,35 @@
 //
-//  RepositoriesListView.swift
+//  PullRequestListView.swift
 //  repositories-list
 //
 //  Created by Leonardo Veiga on 15/08/24.
 //
 
 import Foundation
-
 import UIKit
 import SnapKit
 import core_design_system
+import WebKit
 
-class RepositoriesListView: LLView {
+class PullRequestListView: LLView {
     lazy var wrapper: UIView = .simpleView()
     lazy var loadingView: SimpleTextView = SimpleTextView()
-    lazy var subtitle: UILabel = .label(font: .subtitleBold, numberOfLines: 0)
-    lazy var tableView: UITableView = .tableView(hasFooterLoading: true)
+    lazy var tableView: UITableView = .tableView()
+    lazy var webView: WKWebView = WKWebView()
     
     override func addViews() {
         addSubview(loadingView)
+        addSubview(webView)
         addSubview(wrapper)
-        wrapper.addSubview(subtitle)
         wrapper.addSubview(tableView)
     }
     
     override func addConstraints() {
         loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        webView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -35,23 +39,27 @@ class RepositoriesListView: LLView {
             make.bottom.equalTo(safeAreaLayoutGuide).inset(.margin(.medium))
         }
         
-        subtitle.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-        }
-        
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(subtitle.snp.bottom).inset(-.margin(.medium))
-            make.leading.bottom.trailing.equalToSuperview()
+            make.top.leading.bottom.trailing.equalToSuperview()
         }
     }
     
+    override func setup() {
+        webView.isHidden = true
+        print("FUNCIONOU webView.isHidden = true")
+    }
+    
     func setLanguage(_ language: LanguageType) {
-        self.loadingView.titleLabel.text = "Buscando repositórios utilizando a linguagem \(language.rawValue.capitalized)..."
-        self.subtitle.text = "Repositórios mais populares usando a linguagem de programaçao \(language.rawValue.capitalized) no Github:"
+        self.loadingView.titleLabel.text = "Buscando PRs..."
     }
     
     func setLoading(_ loading: Bool) {
         loadingView.isHidden = !loading
         wrapper.isHidden = loading
+    }
+    
+    func openWebView(_ url: URL) {
+        webView.load(URLRequest(url: url))
+        webView.isHidden = false
     }
 }

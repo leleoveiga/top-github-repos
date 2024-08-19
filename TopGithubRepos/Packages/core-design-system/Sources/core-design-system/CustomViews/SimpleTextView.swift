@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SimpleTextView.swift
 //  core-design-system
 //
 //  Created by Leonardo Veiga on 18/08/24.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class LoadingView: UIView {
+public final class SimpleTextView: UIView {
     
     
     private lazy var stackView: UIStackView = .stackView(axis: .vertical,

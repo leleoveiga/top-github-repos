@@ -1,5 +1,5 @@
 //
-//  RepositoriesListViewCell.swift
+//  PullRequestListViewCell.swift
 //  repositories-list
 //
 //  Created by Leonardo Veiga on 18/08/24.
@@ -10,8 +10,8 @@ import core_design_system
 import core_utility
 import UIKit
 
-class RepositoriesListViewCell: UITableViewCell {
-    static var identifier: String = "RepositoriesListViewCell"
+class PullRequestListViewCell: UITableViewCell {
+    static var identifier: String = "PullRequestListViewCell"
     
     lazy var wrapper: UIView = .simpleView(cornerRadius: .roundedCorner(.large),
                                            borderWidth: .borderWidth(.small),
@@ -23,23 +23,19 @@ class RepositoriesListViewCell: UITableViewCell {
     
     lazy var titleStackView: UIStackView = .stackView(axis: .horizontal,
                                                       spacing: .margin(.medium))
-    lazy var iconImageView: UIImageView = .imageView()
+    
     lazy var repoNameLabel: UILabel = .label(font: .body1Bold,
                                              textColor: .secondary)
     
-    lazy var descriptionLabel: UILabel = .label(font: .body2)
+    lazy var descriptionLabel: UILabel = .label(font: .body2, numberOfLines: 3)
     
     lazy var infosStackView: UIStackView = .stackView(axis: .horizontal,
                                                       spacing: .margin(.medium))
-    lazy var starIconImageView: UIImageView = .imageView(
-        with: UIImage(systemName: "star"),
-        tintColor: MainTheme.GraphicElements.icons
-    )
-    lazy var starsCountLabel: UILabel = .label(font: .caption)
-    lazy var forkIconImageView: UIImageView = .imageView(with: "ic_fork",
-                                                         in: .module,
+    lazy var avatarImageView: UIImageView = .imageView()
+    lazy var ownerName: UILabel = .label(font: .caption)
+    lazy var forkIconImageView: UIImageView = .imageView(with: UIImage(systemName: "calendar"),
                                                          tintColor: MainTheme.GraphicElements.icons)
-    lazy var forksCountLabel: UILabel = .label(font: .caption)
+    lazy var dateLabel: UILabel = .label(font: .caption)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -59,16 +55,15 @@ class RepositoriesListViewCell: UITableViewCell {
         wrapper.addSubview(stackView)
         
         stackView.addArrangedSubview(titleStackView)
-        titleStackView.addArrangedSubview(iconImageView)
         titleStackView.addArrangedSubview(repoNameLabel)
         
         stackView.addArrangedSubview(descriptionLabel)
         
         stackView.addArrangedSubview(infosStackView)
-        infosStackView.addArrangedSubview(starIconImageView)
-        infosStackView.addArrangedSubview(starsCountLabel)
+        infosStackView.addArrangedSubview(avatarImageView)
+        infosStackView.addArrangedSubview(ownerName)
         infosStackView.addArrangedSubview(forkIconImageView)
-        infosStackView.addArrangedSubview(forksCountLabel)
+        infosStackView.addArrangedSubview(dateLabel)
     }
     
     func addConstraints() {
@@ -81,11 +76,7 @@ class RepositoriesListViewCell: UITableViewCell {
             make.edges.equalToSuperview().inset(.margin(.medium))
         }
         
-        iconImageView.snp.makeConstraints { make in
-            make.size.equalTo(CGFloat.height(.profilePicture))
-        }
-        
-        starIconImageView.snp.makeConstraints { make in
+        avatarImageView.snp.makeConstraints { make in
             make.size.equalTo(CGFloat.height(.smallIcon))
         }
         
@@ -93,22 +84,21 @@ class RepositoriesListViewCell: UITableViewCell {
             make.size.equalTo(CGFloat.height(.smallIcon))
         }
     }
-    
 }
 
-extension RepositoriesListViewCell: TableViewCell {
-    func setupCell(with item: Repository) {
-        iconImageView.setImage(imageUrl: item.owner.avatarUrl)
-        iconImageView.clipsToBounds = true
-        iconImageView.layer.cornerRadius = .roundedCorner(.medium)
+extension PullRequestListViewCell: TableViewCell {
+    func setupCell(with item: PullRequestItem) {
+        avatarImageView.setImage(imageUrl: item.user.avatarUrl)
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = .roundedCorner(.medium)
 
-        repoNameLabel.text = item.fullName
-        descriptionLabel.text = item.description
-        starsCountLabel.text = item.stargazersCount.roundedWithAbbreviations
-        forksCountLabel.text = item.forks.roundedWithAbbreviations
+        repoNameLabel.text = item.title
+        descriptionLabel.text = item.body
+        ownerName.text = item.user.name
+        dateLabel.text = item.date?.formatTo(.ddMMyyyy)
         
         infosStackView
-            .setCustomSpacing(.margin(.xsmall), after: starIconImageView)
+            .setCustomSpacing(.margin(.xsmall), after: avatarImageView)
         infosStackView
             .setCustomSpacing(.margin(.xsmall), after: forkIconImageView)
     }

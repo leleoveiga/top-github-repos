@@ -68,10 +68,4 @@ public extension ViewControllerRxSwiftTableView where Self: UIViewController {
     func selected(item: Cell.CellItem) {}
     func additionalSetup(cell: Cell, indexPath: Int) {}
 }
-//
-//public extension ViewControllerRxSwiftTableView where Self: UITableViewDelegate {
-//    func setupTableViewDelegate() {
-//        
-//    }
-//}
 

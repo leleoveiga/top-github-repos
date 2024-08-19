@@ -49,5 +49,3 @@ public extension UIViewController {
         navigationItem.setHidesBackButton(true, animated: true)
     }
 }
-
-

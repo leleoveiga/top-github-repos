@@ -11,12 +11,14 @@ import UIKit
 
 protocol RepositoriesListCoordinatorDelegate: AnyObject {
     func goToRepositotyList()
+    func goToPullRequestList(repository: Repository)
 }
 
 public class RepositoriesListCoordinator: Coordinator {
     public var presenter: UINavigationController
 
     private var repositoryListViewController: RepositoriesListViewController!
+    private var pullRequestListViewController: PullRequestListViewController!
     
     public init(presenter: UINavigationController) {
         self.presenter = presenter
@@ -35,6 +37,17 @@ extension RepositoriesListCoordinator: RepositoriesListCoordinatorDelegate {
             viewModel: viewModel
         )
         presenter.pushViewController(viewController, animated: true)
-        self.repositoryListViewController = viewController
+        repositoryListViewController = viewController
+    }
+    
+    func goToPullRequestList(repository: Repository) {
+        
+        let viewModel = PullRequestListViewModel(repository: PullRequestListRepository(),
+                                                 gitRepository: repository)
+        let viewController = PullRequestListViewController(delegate: self,
+                                                           viewModel: viewModel)
+        
+        presenter.pushViewController(viewController, animated: true)
+        pullRequestListViewController = viewController
     }
 }

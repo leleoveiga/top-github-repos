@@ -40,7 +40,7 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     
     open func showAlert(
         title: String = "Ops!",
-        message: String,
+        message: String = "Aconteceu algo estranho 🤔 tenta de novo",
         okButtonText: String = "Ok",
         completion: (() -> Void)? = nil
     ) {
@@ -55,4 +55,6 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
 }
+

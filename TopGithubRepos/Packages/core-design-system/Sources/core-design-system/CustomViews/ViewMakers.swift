@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ViewMakers.swift
 //  core-design-system
 //
 //  Created by Leonardo Veiga on 18/08/24.
@@ -16,7 +16,8 @@ public extension UITableView {
         showsVerticalScrollIndicator: Bool = false,
         backgroundColor: UIColor = .clear,
         bounces: Bool = true,
-        allowsSelection: Bool = true
+        allowsSelection: Bool = true,
+        hasFooterLoading: Bool = false
     ) -> UITableView {
         let tableView = UITableView()
         tableView.contentInset = UIEdgeInsets.zero
@@ -25,7 +26,25 @@ public extension UITableView {
         tableView.backgroundColor = backgroundColor
         tableView.bounces = bounces
         tableView.allowsSelection = allowsSelection
+        if hasFooterLoading {
+            tableView.addFooterLoading()
+        }
         return tableView
+    }
+    
+    func addFooterLoading() {
+        let loadingIndicator = UIActivityIndicatorView(style: .large)
+        loadingIndicator.color = .gray
+        loadingIndicator.hidesWhenStopped = true
+        self.tableFooterView = loadingIndicator
+    }
+    
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            (self.tableFooterView as? UIActivityIndicatorView)?.startAnimating()
+        } else {
+            (self.tableFooterView as? UIActivityIndicatorView)?.stopAnimating()
+        }
     }
 }
 
@@ -144,7 +163,7 @@ protocol LLViewProtocol {
 }
 
 open class LLView: UIView, LLViewProtocol {
-    private lazy var loadingView: LoadingView? = nil
+    private lazy var loadingView: SimpleTextView? = nil
     
     open func addViews() {}
     open func addConstraints() {}

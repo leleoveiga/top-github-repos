@@ -13,9 +13,9 @@ struct RepositoryListRequest: Codable {
     let sort: SortType
     
     enum CodingKeys: String, CodingKey {
-        case page = "page"
-        case q = "q"
-        case sort = "sort"
+        case page
+        case q
+        case sort
     }
 }
 
@@ -24,23 +24,25 @@ struct RepositoryListResponse: Codable {
     let items: [Repository]
     
     enum CodingKeys: String, CodingKey {
-        case items = "items"
+        case items
     }
 }
 
 // MARK: - Item
 struct Repository: Codable {
     let name: String
+    let fullName: String
     let description: String?
     let owner: Owner
     let stargazersCount: Int
     let forks: Int
     
     enum CodingKeys: String, CodingKey {
-        case name = "full_name"
-        case description = "description"
-        case forks = "forks"
-        case owner = "owner"
+        case name
+        case fullName = "full_name"
+        case description
+        case forks
+        case owner
         case stargazersCount = "stargazers_count"
     }
 }
@@ -51,14 +53,14 @@ struct Owner: Codable {
     let avatarUrl: String?
     
     enum CodingKeys: String, CodingKey {
-        case login = "login"
+        case login
         case avatarUrl = "avatar_url"
     }
 }
 
 enum SortType: String, Codable {
-    case stars = "stars"
-    case forks = "forks"
+    case stars
+    case forks
 }
 
 enum LanguageType: String, Codable {

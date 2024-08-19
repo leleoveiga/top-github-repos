@@ -8,4 +8,5 @@
 public enum NetworkConfig {
     public static var useMockedRequests = false
     public static var apiUrl = "https://api.github.com/"
+    public static var locale = "pt_BR"
 }
