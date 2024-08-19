@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  RepositoriesListViewModel.swift
 //  repositories-list
 //
 //  Created by Leonardo Veiga on 17/08/24.
