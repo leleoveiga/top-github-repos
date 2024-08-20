@@ -16,7 +16,7 @@ class PullRequestListViewController: BaseViewController<PullRequestListView> {
     let viewModel: PullRequestListViewModel!
     let searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "Procurar..."
+        searchController.searchBar.placeholder = "search".localize
         searchController.searchBar.sizeToFit()
         searchController.searchBar.tintColor = MainTheme.text
         return searchController
@@ -61,7 +61,7 @@ class PullRequestListViewController: BaseViewController<PullRequestListView> {
             .subscribe(onNext: { [weak self] empty in
                 guard let self = self else { return }
                 if empty {
-                    screenView.loadingView.titleLabel.text = "Nenhum PR aberto encontrado 😢"
+                    screenView.loadingView.titleLabel.text = "no_pr_found".localize
                 } else {
                     screenView.loadingView.isHidden = true
                 }
@@ -73,7 +73,7 @@ class PullRequestListViewController: BaseViewController<PullRequestListView> {
                 onNext: { [weak self] error in
                     guard let self = self else { return }
                     showAlert(
-                        message: "Houve um erro ao buscar os PRs.\nTentar novamente?",
+                        message: "search_prs_error".localize,
                         completion: { self.viewModel.getPullRequests() })
                 })
             .disposed(by: disposeBag)
@@ -96,7 +96,7 @@ extension PullRequestListViewController: ViewControllerRxSwiftTableView {
         if let url = URL(string: item.htmlUrl) {
             openWebView(url: url)
         } else {
-            showAlert(message: "Aparentemente o link do pull request está quebrado ⛓️‍💥")
+            showAlert(message: "broken_url".localize)
         }
     }
 }

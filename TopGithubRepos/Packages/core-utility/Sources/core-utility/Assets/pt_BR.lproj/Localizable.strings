@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  core-utility
+
+  Created by Leonardo Veiga on 20/08/24.
+  
+*/
+
+"ops" = "Ops!";
+"ok" = "Ok";
+"unknown_erro_message" = "Aconteceu algo estranho... 🤔 Espera um pouco e tenta de novo";

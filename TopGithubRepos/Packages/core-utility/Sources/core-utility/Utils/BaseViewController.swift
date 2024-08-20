@@ -44,9 +44,9 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     open func setupObservables() {}
     
     open func showAlert(
-        title: String = "Ops!",
-        message: String = "Aconteceu algo estranho... 🤔 Espera um pouco e tenta de novo",
-        okButtonText: String = "Ok",
+        title: String = "ops".localize,
+        message: String = "unknown_erro_message".localize,
+        okButtonText: String = "ok".localize,
         completion: (() -> Void)? = nil
     ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
