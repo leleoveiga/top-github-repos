@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  repositories-list
+//  Localize.swift
+//  core-utility
 //
 //  Created by Leonardo Veiga on 20/08/24.
 //
