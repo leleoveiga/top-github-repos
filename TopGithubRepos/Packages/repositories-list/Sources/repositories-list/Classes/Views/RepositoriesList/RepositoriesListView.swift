@@ -13,19 +13,19 @@ import core_design_system
 
 class RepositoriesListView: LLView {
     lazy var wrapper: UIView = .simpleView()
-    lazy var loadingView: SimpleTextView = SimpleTextView()
+    lazy var simpleTextView: SimpleTextView = SimpleTextView()
     lazy var subtitle: UILabel = .label(font: .subtitleBold, numberOfLines: 0)
     lazy var tableView: UITableView = .tableView(hasFooterLoading: true)
     
     override func addViews() {
-        addSubview(loadingView)
+        addSubview(simpleTextView)
         addSubview(wrapper)
         wrapper.addSubview(subtitle)
         wrapper.addSubview(tableView)
     }
     
     override func addConstraints() {
-        loadingView.snp.makeConstraints { make in
+        simpleTextView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -45,13 +45,13 @@ class RepositoriesListView: LLView {
         }
     }
     
-    func setLanguage(_ language: LanguageType) {
-        self.loadingView.titleLabel.text = "Buscando repositórios utilizando a linguagem \(language.rawValue.capitalized)..."
-        self.subtitle.text = "Repositórios mais populares usando a linguagem de programaçao \(language.rawValue.capitalized) no Github:"
+    func setupViewWith(_ language: LanguageType) {
+        self.simpleTextView.titleLabel.text = String(format: "searching_repos".localize, arguments: [language.rawValue.capitalized])
+        self.subtitle.text = String(format: "repository_list_subtitle".localize, arguments: [language.rawValue.capitalized])
     }
     
     func setLoading(_ loading: Bool) {
-        loadingView.isHidden = !loading
+        simpleTextView.isHidden = !loading
         wrapper.isHidden = loading
     }
 }

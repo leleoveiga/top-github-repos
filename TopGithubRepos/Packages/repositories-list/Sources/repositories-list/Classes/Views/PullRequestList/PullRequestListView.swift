@@ -38,7 +38,7 @@ class PullRequestListView: LLView {
     }
     
     override func setup() {
-        loadingView.titleLabel.text = "Buscando PRs abertos... 🔎"
+        loadingView.titleLabel.text = "searching_prs".localize
     }
     
     func setLoading(_ loading: Bool) {

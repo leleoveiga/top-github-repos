@@ -16,7 +16,7 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
     let viewModel: RepositoriesListViewModel!
     let searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "Procurar..."
+        searchController.searchBar.placeholder = "search".localize
         searchController.searchBar.sizeToFit()
         searchController.searchBar.tintColor = MainTheme.text
         return searchController
@@ -36,7 +36,7 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Populares 🌟"
+        title = "popular_title".localize
         setLLabsBarStyle(.mainTheme)
         setupSearchBar()
     }
@@ -50,6 +50,7 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenView.setLoading(true)
         viewModel.getRepositories()
     }
     
@@ -60,14 +61,14 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
         viewModel.selectedLanguage
             .subscribe(onNext: { [weak self] lang in
                 guard let self = self else { return }
-                screenView.setLanguage(lang)
+                screenView.setupViewWith(lang)
             })
             .disposed(by: disposeBag)
         
         viewModel.isRepositoryListEmpty
-            .subscribe(onNext: { [weak self] loading in
+            .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                screenView.setLoading(loading)
+                screenView.setLoading(false)
             })
             .disposed(by: disposeBag)
         
@@ -76,10 +77,10 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
                 onNext: { [weak self] error in
                     guard let self = self else { return }
                     if error.asAFError?.responseCode == 422 {
-                        showAlert(message: "Não dá para carregar mais do que 1000 repositórios.")
+                        showAlert(message: "repository_api_limit_error".localize)
                     }
                     showAlert(
-                        message: "Houve um erro ao carregar os repositórios.\nTentar novamente?",
+                        message: "get_repositories_error".localize,
                         completion: { self.viewModel.getRepositories() })
                 })
             .disposed(by: disposeBag)
