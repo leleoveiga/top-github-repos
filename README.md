@@ -12,7 +12,7 @@ na solução. Então fiz o que estava dentro dos meus limites de conhecimento e 
 o projeto na quinta-feira).
 
 ## Autocrítica
-Eu acho que eu podia ter feito telas mais elaboradas, pois achei o design, apesar de funcional e bonito (na minha opinião e na dos meus amigos),
+Eu acho que eu podia ter feito telas mais elaboradas, pois achei que o design, apesar de funcional e bonito (na minha opinião e na dos meus amigos),
 é bem simplória, além de eu não ter feito tantos testes quanto eu acho que deveria ter feito. Algo que com certeza eu teria tempo pra fazer se
 eu tivesse conseguido iniciarn o dia em que o desafio foi passado pra mim. Além, também, de eu não ter testado as `UIView` e `UIViewController`,
 e portanto os testes só tiveram uma cobertura de (quase) 100% nos Models, ViewModels e Repositorys.
