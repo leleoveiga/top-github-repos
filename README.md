@@ -1,5 +1,10 @@
 # Desafio LuizaLabs
 
+
+https://github.com/user-attachments/assets/7597e836-f4b8-4e24-a02d-da6c7f760773
+
+
+
 ## Observações
 Foi muito legal ter feito esse desafio, pois quando olhei as telas do desafio eu pensei que era uma besteira, que ia ser fácil.
 Mas depois de eu ver que eu seria avaliado de acordo com o nível da posição eu vi a oportunidade de ~fazer overengineering~ caprichar
@@ -31,7 +36,7 @@ MVVM-C
 Fiz o projeto de forma modularizada (packages independentes uns dos outros), com um design system básico, e o código mais limpo
 que eu pude pensar na hora, e portanto escalável. Tentei abstrair o máximo possível as coisas que poderiam ser reutilizadas múltiplas vezes, além de
 tentar sempre facilitar o desenvolvimento com extensions que aceleram e que ajudam em diversos casos. A interface, apesar de simplória, é algo que
-é bastante do meu agrado algo bem nativo iOS, poderia ser mais elaborada.
+é bastante do meu agrado algo bem nativo iOS, poderia ser mais elaborada. Algo que eu gostei foram as animações na listagem principal, que por mais simples que seja, fez sentido pra mim pois ela só ocorre em células que não foram vistas antes, parecendo que está a todo momento carregando, dando a ideia do scroll infinito só que mais _smooth_ 
 
 Algumas funções de extensões eu peguei de códigos que eu já conhecia e que julgava extremamente úteis e indispensáveis para ajudar no desenvolvimento.
 Quero deixar claro que essas funções só serviram apenas para essa finalidade, acelerar o desenvolvimento, não descartando o fato de eu ter um extenso 
