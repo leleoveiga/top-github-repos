@@ -15,8 +15,7 @@ public final class SimpleTextView: UIView {
                                                     alignment: .center,
                                                     spacing: .margin(.medium))
     
-    public lazy var titleLabel: UILabel = .label(text: "Buscando...",
-                                                 font: .title2Bold,
+    public lazy var titleLabel: UILabel = .label(font: .title2Bold,
                                                  numberOfLines: 0,
                                                  textAlignment: .center)
     

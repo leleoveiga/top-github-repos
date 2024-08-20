@@ -16,7 +16,9 @@ class RepositoriesListViewModel: BaseViewModel {
     var selectedLanguage: BehaviorRelay<LanguageType> = .init(value: .swift)
     let repositories: BehaviorRelay<[Repository]> = .init(value: [])
     let repositoriesFiltered: BehaviorRelay<[Repository]> = .init(value: [])
+    let isRepositoryListEmpty: PublishSubject<Bool> = .init()
     var page = 1
+
     
     init(repository: RepositoriesListRepositoryProtocol) {
         self.repository = repository
@@ -34,6 +36,7 @@ class RepositoriesListViewModel: BaseViewModel {
             onSuccess: { [weak self] response in
                 self?.page += 1
                 self?.repositories.append(contentsOf: (response.items))
+                self?.isRepositoryListEmpty.onNext(response.items.count == 0)
                 self?.resetSearch()
             }
         )

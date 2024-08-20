@@ -57,9 +57,7 @@ class PullRequestListViewController: BaseViewController<PullRequestListView> {
         super.setupObservables()
         setupTableView()
         
-        viewModel.pullRequests
-            .skip(1)
-            .map( { $0.count == 0 } )
+        viewModel.isPullRequestListEmpty
             .subscribe(onNext: { [weak self] empty in
                 guard let self = self else { return }
                 if empty {
@@ -79,15 +77,6 @@ class PullRequestListViewController: BaseViewController<PullRequestListView> {
                         completion: { self.viewModel.getPullRequests() })
                 })
             .disposed(by: disposeBag)
-        
-        viewModel.loading
-            .skip(1)
-            .asObservable()
-            .subscribe(onNext: { [weak self] isLoading in
-                self?.tableView.setLoading(isLoading)
-            })
-            .disposed(by: disposeBag)
-        
     }
 }
 

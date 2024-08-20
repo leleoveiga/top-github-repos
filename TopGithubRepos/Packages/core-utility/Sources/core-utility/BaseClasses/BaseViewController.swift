@@ -15,6 +15,7 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     //MARK: - Variables
     open var screenView: ViewType { return view as! ViewType }
     open var disposeBag = DisposeBag()
+    open var didSetupObservables: Bool = false
     
     //MARK: - LifeCycle
     /// Loads ViewController's View based on generic type ViewType. If the View has parameters for its initialization, this function should be overridden.
@@ -26,13 +27,17 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupBack()
-        setupObservables()
+        if !didSetupObservables {
+            didSetupObservables = true
+            setupObservables()
+        }
     }
     
     /// Dispose current observables, so the ViewController will not execute binds/subscribe closures if it is not being shown.
     open override func viewDidDisappear(_ animated: Bool) {
         disposeBag = DisposeBag()
         super.viewDidDisappear(animated)
+        didSetupObservables = false
     }
     
     //MARK: - Setups
@@ -40,7 +45,7 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     
     open func showAlert(
         title: String = "Ops!",
-        message: String = "Aconteceu algo estranho 🤔 tenta de novo",
+        message: String = "Aconteceu algo estranho... 🤔 Espera um pouco e tenta de novo",
         okButtonText: String = "Ok",
         completion: (() -> Void)? = nil
     ) {

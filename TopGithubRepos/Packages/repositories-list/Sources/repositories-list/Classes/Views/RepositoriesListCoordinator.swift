@@ -17,8 +17,8 @@ protocol RepositoriesListCoordinatorDelegate: AnyObject {
 public class RepositoriesListCoordinator: Coordinator {
     public var presenter: UINavigationController
 
-    private var repositoryListViewController: RepositoriesListViewController!
-    private var pullRequestListViewController: PullRequestListViewController!
+    private var repositoryListViewController: RepositoriesListViewController?
+    private var pullRequestListViewController: PullRequestListViewController?
     
     public init(presenter: UINavigationController) {
         self.presenter = presenter

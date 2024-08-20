@@ -9,27 +9,21 @@ import Foundation
 import UIKit
 import SnapKit
 import core_design_system
-import WebKit
+import Hero
 
 class PullRequestListView: LLView {
     lazy var wrapper: UIView = .simpleView()
     lazy var loadingView: SimpleTextView = SimpleTextView()
     lazy var tableView: UITableView = .tableView()
-    lazy var webView: WKWebView = WKWebView()
     
     override func addViews() {
         addSubview(loadingView)
-        addSubview(webView)
         addSubview(wrapper)
         wrapper.addSubview(tableView)
     }
     
     override func addConstraints() {
         loadingView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        webView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -45,21 +39,12 @@ class PullRequestListView: LLView {
     }
     
     override func setup() {
-        webView.isHidden = true
-        print("FUNCIONOU webView.isHidden = true")
-    }
-    
-    func setLanguage(_ language: LanguageType) {
-        self.loadingView.titleLabel.text = "Buscando PRs..."
+        loadingView.titleLabel.text = "Buscando PRs abertos... 🔎"
+        
     }
     
     func setLoading(_ loading: Bool) {
         loadingView.isHidden = !loading
         wrapper.isHidden = loading
-    }
-    
-    func openWebView(_ url: URL) {
-        webView.load(URLRequest(url: url))
-        webView.isHidden = false
     }
 }

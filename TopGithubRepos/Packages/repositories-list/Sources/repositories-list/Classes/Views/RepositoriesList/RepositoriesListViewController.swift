@@ -64,8 +64,7 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
             })
             .disposed(by: disposeBag)
         
-        viewModel.repositories
-            .map( { $0.count == 0 } )
+        viewModel.isRepositoryListEmpty
             .subscribe(onNext: { [weak self] loading in
                 guard let self = self else { return }
                 screenView.setLoading(loading)

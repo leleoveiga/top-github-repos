@@ -27,7 +27,7 @@ class RepositoriesListViewCell: UITableViewCell {
     lazy var repoNameLabel: UILabel = .label(font: .body1Bold,
                                              textColor: .secondary)
     
-    lazy var descriptionLabel: UILabel = .label(font: .body2)
+    lazy var descriptionLabel: UILabel = .label(font: .body2, numberOfLines: 3)
     
     lazy var infosStackView: UIStackView = .stackView(axis: .horizontal,
                                                       spacing: .margin(.medium))

@@ -15,6 +15,7 @@ class PullRequestListViewModel: BaseViewModel {
     
     let pullRequests: BehaviorRelay<[PullRequestItem]> = .init(value: [])
     let pullRequestsFiltered: BehaviorRelay<[PullRequestItem]> = .init(value: [])
+    let isPullRequestListEmpty: PublishSubject<Bool> = .init()
     let selectedRepository: Repository
     
     init(repository: PullRequestListRepository, gitRepository: Repository) {
@@ -31,6 +32,7 @@ class PullRequestListViewModel: BaseViewModel {
             from: repository.getPullRequests(params: params),
             onSuccess: { [weak self] response in
                 self?.pullRequests.append(contentsOf: (response))
+                self?.isPullRequestListEmpty.onNext(response.count == 0)
                 self?.resetSearch()
             }
         )
