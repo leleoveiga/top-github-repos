@@ -21,3 +21,9 @@ class RepositoriesListRepository: RepositoriesListRepositoryProtocol {
 protocol RepositoriesListRepositoryProtocol  {
     func getRepositories(params: RepositoryListRequest) -> Single<RepositoryListResponse>
 }
+
+class RepositoriesListRepositoryMock: RepositoriesListRepositoryProtocol {
+    func getRepositories(params: RepositoryListRequest) -> Single<RepositoryListResponse> {
+        return Single.just(.with())
+    }
+}

@@ -11,14 +11,14 @@ import RxSwift
 import RxCocoa
 
 class PullRequestListViewModel: BaseViewModel {
-    private let repository: PullRequestListRepository
+    private let repository: PullRequestListRepositoryProtocol
     
     let pullRequests: BehaviorRelay<[PullRequestItem]> = .init(value: [])
     let pullRequestsFiltered: BehaviorRelay<[PullRequestItem]> = .init(value: [])
     let isPullRequestListEmpty: PublishSubject<Bool> = .init()
-    let selectedRepository: Repository
+    var selectedRepository: Repository
     
-    init(repository: PullRequestListRepository, gitRepository: Repository) {
+    init(repository: PullRequestListRepositoryProtocol, gitRepository: Repository) {
         self.repository = repository
         self.selectedRepository = gitRepository
     }
@@ -32,7 +32,7 @@ class PullRequestListViewModel: BaseViewModel {
             from: repository.getPullRequests(params: params),
             onSuccess: { [weak self] response in
                 self?.pullRequests.append(contentsOf: (response))
-                self?.isPullRequestListEmpty.onNext(response.count == 0)
+                self?.isPullRequestListEmpty.onNext(self?.pullRequests.value.count == 0)
                 self?.resetSearch()
             }
         )

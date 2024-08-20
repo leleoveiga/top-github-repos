@@ -18,7 +18,7 @@ public protocol BaseViewModelType {
 open class BaseViewModel {
     
     // MARK: - Variables
-    public let error = PublishSubject<String>()
+    public let error = PublishSubject<Error>()
     public let loading = BehaviorRelay<Bool>(value: false)
     public let disposeBag = DisposeBag()
     
@@ -42,7 +42,7 @@ open class BaseViewModel {
             if let errorAction = onError {
                 errorAction(error)
             } else {
-                self.error.onNext(error.localizedDescription)
+                self.error.onNext(error)
             }
         })
         .disposed(by: disposeBag)

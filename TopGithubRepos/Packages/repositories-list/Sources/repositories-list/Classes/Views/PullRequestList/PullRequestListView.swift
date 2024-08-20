@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SnapKit
 import core_design_system
-import Hero
 
 class PullRequestListView: LLView {
     lazy var wrapper: UIView = .simpleView()
@@ -40,7 +39,6 @@ class PullRequestListView: LLView {
     
     override func setup() {
         loadingView.titleLabel.text = "Buscando PRs abertos... 🔎"
-        
     }
     
     func setLoading(_ loading: Bool) {

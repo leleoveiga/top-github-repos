@@ -13,11 +13,17 @@ import RxSwift
 
 class PullRequestListRepository: PullRequestListRepositoryProtocol {
     func getPullRequests(params: PullRequestListRequest) -> Single<PullRequestListResponse> {
-        var ep = Endpoint.repositoryDetails.formatQueryEndpoint(params: params)
+        let ep = Endpoint.repositoryDetails.formatQueryEndpoint(params: params)
         return NetworkManager.shared.request(ep)
     }
 }
 
 protocol PullRequestListRepositoryProtocol  {
     func getPullRequests(params: PullRequestListRequest) -> Single<PullRequestListResponse>
+}
+
+class PullRequestListRepositoryMock: PullRequestListRepositoryProtocol {
+    func getPullRequests(params: PullRequestListRequest) -> Single<PullRequestListResponse> {
+        return Single.just(.with())
+    }
 }

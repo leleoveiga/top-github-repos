@@ -14,6 +14,7 @@ class RepositoriesListViewModel: BaseViewModel {
     private let repository: RepositoriesListRepositoryProtocol
     
     var selectedLanguage: BehaviorRelay<LanguageType> = .init(value: .swift)
+    var selectedSort: BehaviorRelay<SortType> = .init(value: .stars)
     let repositories: BehaviorRelay<[Repository]> = .init(value: [])
     let repositoriesFiltered: BehaviorRelay<[Repository]> = .init(value: [])
     let isRepositoryListEmpty: PublishSubject<Bool> = .init()
@@ -29,14 +30,14 @@ class RepositoriesListViewModel: BaseViewModel {
         let params = RepositoryListRequest(
             page: page,
             q: selectedLanguage.value.asRequestParam(),
-            sort: .stars
+            sort: selectedSort.value
         )
         observeAPIRequest(
             from: repository.getRepositories(params: params),
             onSuccess: { [weak self] response in
                 self?.page += 1
                 self?.repositories.append(contentsOf: (response.items))
-                self?.isRepositoryListEmpty.onNext(response.items.count == 0)
+                self?.isRepositoryListEmpty.onNext(self?.repositories.value.count == 0)
                 self?.resetSearch()
             }
         )
