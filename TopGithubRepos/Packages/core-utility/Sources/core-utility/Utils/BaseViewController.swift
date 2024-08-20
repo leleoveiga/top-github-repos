@@ -53,7 +53,7 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
                                                 message: message.isEmpty ? "unknown_erro_message".localize : message,
                                                 preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: okButtonText,
+        let okAction = UIAlertAction(title: okButtonText.isEmpty ? "ok".localize : okButtonText,
                                      style: .default) { _ in
             completion?()
         }
