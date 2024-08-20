@@ -44,12 +44,14 @@ open class BaseViewController<ViewType: UIView>: UIViewController {
     open func setupObservables() {}
     
     open func showAlert(
-        title: String = "ops".localize,
-        message: String = "unknown_erro_message".localize,
-        okButtonText: String = "ok".localize,
+        title: String = "",
+        message: String = "",
+        okButtonText: String = "",
         completion: (() -> Void)? = nil
     ) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: title.isEmpty ? "ops".localize : title,
+                                                message: message.isEmpty ? "unknown_erro_message".localize : message,
+                                                preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: okButtonText,
                                      style: .default) { _ in
