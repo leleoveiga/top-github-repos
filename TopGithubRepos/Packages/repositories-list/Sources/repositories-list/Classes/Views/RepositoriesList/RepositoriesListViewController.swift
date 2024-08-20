@@ -75,6 +75,9 @@ class RepositoriesListViewController: BaseViewController<RepositoriesListView> {
             .subscribe(
                 onNext: { [weak self] error in
                     guard let self = self else { return }
+                    if error.asAFError?.responseCode == 422 {
+                        showAlert(message: "Não dá para carregar mais do que 1000 repositórios.")
+                    }
                     showAlert(
                         message: "Houve um erro ao carregar os repositórios.\nTentar novamente?",
                         completion: { self.viewModel.getRepositories() })
@@ -115,13 +118,20 @@ extension RepositoriesListViewController: ViewControllerRxSwiftTableView {
     private func animateCell(_ indexPath: Int, _ cell: RepositoriesListViewController.Cell) {
         if indexPath > biggestIndexPath {
             biggestIndexPath = indexPath
-            cell.alpha = 0.15
+            cell.alpha = 0.01
+            cell.transform = CGAffineTransform(translationX: 0, y: -cell.frame.height / 2).scaledBy(x: 0.75, y: 0.75)
             
-            UIView.animate(
-                withDuration: 0.35,
-                animations: {
-                    cell.alpha = 1
-                })
+            let animationCurve = UICubicTimingParameters(controlPoint1: CGPoint(x: 0.9, y: 0.1),
+                                                         controlPoint2: CGPoint(x: 0.1, y: 0.9))
+            
+            let animator = UIViewPropertyAnimator(duration: 0.5, timingParameters: animationCurve)
+            
+            animator.addAnimations {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0).scaledBy(x: 1, y: 1)
+                cell.alpha = 1
+            }
+            animator.isUserInteractionEnabled = true
+            animator.startAnimation()
         }
     }
     
