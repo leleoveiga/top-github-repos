@@ -6,8 +6,7 @@ https://github.com/user-attachments/assets/7597e836-f4b8-4e24-a02d-da6c7f760773
 
 
 ## Observações
-Foi muito legal ter feito esse desafio, pois quando olhei as telas do desafio eu pensei que era uma besteira, que ia ser fácil.
-Mas depois de eu ver que eu seria avaliado de acordo com o nível da posição, eu vi a oportunidade de ~fazer overengineering~ caprichar
+Foi muito legal ter feito esse desafio, pois quando olhei as telas do desafio eu pensei que ia ser uma tarefa fácil, mas depois de ver que eu seria avaliado de acordo com o nível da posição, eu vi a oportunidade de ~fazer overengineering~ caprichar
 na solução. Então fiz o que estava dentro dos meus limites de conhecimento e tempo (que eu não tive muito pois só consegui iniciar
 o projeto na quinta-feira).
 
