@@ -10,10 +10,13 @@
 "searching_prs" = "Buscando PRs abertos... 🔎";
 "no_pr_found" = "Nenhum PR aberto encontrado 😢";
 "broken_url" = "Aparentemente o link do pull request está quebrado ⛓️‍💥";
-"searching_repos" = "Buscando repositórios utilizando a linguagem %@ ...";
-"repository_list_subtitle" = "Repositórios mais populares usando a linguagem de programaçao %@ no Github:";
-"search" = "Procurar...";
-"search_prs_error" = "Houve um erro ao buscar os PRs.\nTentar novamente?";
 "popular_title" = "Populares 🌟";
+"popular_subtitle" = "Repositórios mais populares usando a linguagem de programaçao %@ no Github:";
+"searching_repos" = "Buscando repositórios utilizando a linguagem %@ ...";
+"search" = "Procurar...";
+
+"prs_list_subtitle" = "Pull requests abertos:";
+"search_prs_error" = "Houve um erro ao buscar os PRs.\nTentar novamente?";
 "repository_api_limit_error" = "Não dá para carregar mais do que 1000 repositórios.";
 "get_repositories_error" = "Houve um erro ao carregar os repositórios.\nTentar novamente?";
+

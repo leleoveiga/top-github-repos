@@ -47,7 +47,7 @@ class RepositoriesListView: LLView {
     
     func setupViewWith(_ language: LanguageType) {
         self.simpleTextView.titleLabel.text = String(format: "searching_repos".localize, arguments: [language.rawValue.capitalized])
-        self.subtitle.text = String(format: "repository_list_subtitle".localize, arguments: [language.rawValue.capitalized])
+        self.subtitle.text = String(format: "popular_subtitle".localize, arguments: [language.rawValue.capitalized])
     }
     
     func setLoading(_ loading: Bool) {

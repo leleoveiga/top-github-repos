@@ -60,11 +60,7 @@ class PullRequestListViewController: BaseViewController<PullRequestListView> {
         viewModel.isPullRequestListEmpty
             .subscribe(onNext: { [weak self] empty in
                 guard let self = self else { return }
-                if empty {
-                    screenView.loadingView.titleLabel.text = "no_pr_found".localize
-                } else {
-                    screenView.loadingView.isHidden = true
-                }
+                screenView.setupView(isEmpty: empty)
             })
             .disposed(by: disposeBag)
         
