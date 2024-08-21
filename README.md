@@ -1,4 +1,4 @@
-# Desafio LuizaLabs
+# Top Github Repos
 
 
 https://github.com/user-attachments/assets/7597e836-f4b8-4e24-a02d-da6c7f760773
@@ -23,7 +23,7 @@ Tentei usar Hero para animações mas eu acabei perdendo horas tentando fazer el
 porém não tive sucesso, infelizmente. Percebi que as imagens da listagem de repositórios estavam tendo _flickering_
 e percebi que teria que cachear as imagens para uma melhor performance e menos bugs na interface, então usei SDWebImage.
 
-- UIkit
+- UIKit
 - SnapKit
 - RxSwift
 - Alamofire
